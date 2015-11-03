@@ -6,7 +6,7 @@
     .config(routerConfig);
 
   /** @ngInject */
-  function routerConfig($stateProvider, $urlRouterProvider) {
+  function routerConfig($stateProvider, $urlRouterProvider, /*$locationProvider*/) {
     $stateProvider
       .state('home', {
         url: '/',
@@ -18,8 +18,11 @@
         url: '/crud',
         templateUrl: 'app/crud/crud.html',
         controller: 'CrudController',
-        controllerAs: 'main'
+        controllerAs: 'crud'
       });
+
+    // Enable html5mode
+    //$locationProvider.html5Mode(true);
 
     $urlRouterProvider.otherwise('/');
   }
