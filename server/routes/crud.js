@@ -3,14 +3,14 @@ var router = express.Router();
 var models = require('../models');
 
 // get all goods
-router.get('/goods', function(req, res) {
+router.get('/api/goods', function(req, res) {
   models.Goods.findAll({}).then(function(goods) {
     res.json(goods);
   });
 });
 
 // get single good
-router.get('/goods/:id', function(req, res) {
+router.get('/api/goods/:id', function(req, res) {
   models.Goods.find({
     where: {
       id: req.params.id
@@ -21,7 +21,7 @@ router.get('/goods/:id', function(req, res) {
 });
 
 // add new good
-router.post('/goods', function(req, res) {
+router.post('/api/goods', function(req, res) {
   models.Goods.create({
     title: req.body.title,
     price: req.body.price
@@ -31,7 +31,7 @@ router.post('/goods', function(req, res) {
 });
 
 // update single good
-router.put('/goods/:id', function(req, res) {
+router.put('/api/goods/:id', function(req, res) {
   models.Goods.find({
     where: {
       id: req.params.id

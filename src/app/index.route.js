@@ -13,6 +13,12 @@
         templateUrl: 'app/main/main.html',
         controller: 'MainController',
         controllerAs: 'main'
+      })
+      .state('crud', {
+        url: '/crud',
+        templateUrl: 'app/crud/crud.html',
+        controller: 'CrudController',
+        controllerAs: 'main'
       });
 
     $urlRouterProvider.otherwise('/');
