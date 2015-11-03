@@ -6,8 +6,11 @@
     .controller('CrudController', CrudController);
 
   /** @ngInject */
-  function CrudController() {
+  function CrudController($log,crudServ) {
     var vm = this;
+    crudServ.query(function(result){
+      $log.debug(result);
+    });
 
   }
 })();
