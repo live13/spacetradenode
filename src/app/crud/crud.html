@@ -1,7 +1,22 @@
 <div class="container">
 
-  <div>
+  <H1>
     Crud
+  </H1>
+
+  <div ng-repeat="good in crud.goods">
+    <div>
+      <input type="text" ng-model="good.title">
+      <input type="text" ng-model="good.price">
+      <input type="button" ng-click="crud.update(good)" value="update">
+      <input type="button" ng-click="crud.delete(good)" value="delete">
+    </div>
+  </div>
+
+  <div>
+    <input type="text" ng-model="crud.newgood.title">
+    <input type="text" ng-model="crud.newgood.price">
+    <input type="button" ng-click="crud.create(crud.newgood)" value="create">
   </div>
 
 </div>

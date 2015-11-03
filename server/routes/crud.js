@@ -5,10 +5,10 @@ var models = require('../models');
 // get all goods
 router.get('/api/goods', function(req, res) {
   console.log('/api/goods');
-  res.json({result: 200});
-  //models.Goods.findAll({}).then(function(goods) {
-  //  res.json(goods);
-  //});
+  //res.json({result: 200});
+  models.Goods.findAll({}).then(function(goods) {
+    res.json(goods);
+  });
 });
 
 // get single good

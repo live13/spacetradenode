@@ -1,4 +1,4 @@
-/*'use strict';
+'use strict';
 
 var fs        = require('fs');
 var path      = require('path');
@@ -13,6 +13,7 @@ if (config.use_env_variable) {
 } else {
   var sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
+console.log('connect db '+config.database);
 
 fs
   .readdirSync(__dirname)
@@ -20,6 +21,7 @@ fs
     return (file.indexOf('.') !== 0) && (file !== basename);
   })
   .forEach(function(file) {
+    console.log('add model '+file);
     if (file.slice(-3) !== '.js') return;
     var model = sequelize['import'](path.join(__dirname, file));
     db[model.name] = model;
@@ -35,4 +37,4 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
-*/
+
