@@ -21,14 +21,21 @@
 
     function createGood(newgood){
       $log.debug(newgood);
+      crudServ.save(newgood,function(result){
+        $log.debug(result);
+      });
     }
 
     function updateGood(newgood){
-      $log.debug(newgood);
+      crudServ.create({id:newgood.id},newgood,function(result){
+        $log.debug(result);
+      });
     }
 
     function deleteGood(newgood){
-      $log.debug(newgood);
+      crudServ.delete({id:newgood.id},function(result){
+        $log.debug(result);
+      });
     }
 
   }

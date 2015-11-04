@@ -28,12 +28,12 @@ router.get('/api/goods/:id', function(req, res) {
 router.post('/api/goods', function(req, res) {
   console.log('/api/goods put');
   res.json({result: 200});
-  //models.Goods.create({
-  //  title: req.body.title,
-  //  price: req.body.price
-  //}).then(function(good) {
-  //  res.json(good);
-  //});
+  models.Goods.create({
+    title: req.body.title,
+    price: req.body.price
+  }).then(function(good) {
+    res.json(good);
+  });
 });
 
 // update single good
