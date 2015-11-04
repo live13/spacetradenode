@@ -15,3 +15,10 @@ bower install
 ```
 npm start
 ```
+
+
+## Create db tables
+
+```
+node server/init.js
+```

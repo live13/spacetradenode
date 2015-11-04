@@ -6,7 +6,10 @@ var models = require('../models');
 router.get('/api/goods', function(req, res) {
   console.log('/api/goods');
   //res.json({result: 200});
-  models.Goods.findAll({}).then(function(goods) {
+  models.Goods.findAll({
+    attributes: ['id', 'title', 'price']
+  }).then(function(goods) {
+    //console.log(goods);
     res.json(goods);
   });
 });
@@ -14,59 +17,64 @@ router.get('/api/goods', function(req, res) {
 // get single good
 router.get('/api/goods/:id', function(req, res) {
   console.log('/api/goods/'+req.params.id);
-  res.json({result: 200});
-  //models.Goods.find({
-  //  where: {
-  //    id: req.params.id
-  //  }
-  //}).then(function(good) {
-  //  res.json(good);
-  //});
+  //res.json({result: 200});
+  models.Goods.findOne({
+    where: {
+      id: req.params.id
+    },
+    attributes: ['id', 'title', 'price']
+  }).then(function(good) {
+    //console.log(good);
+    res.json(good);
+  });
 });
 
 // add new good
 router.post('/api/goods', function(req, res) {
-  console.log('/api/goods put');
-  res.json({result: 200});
+  //console.log('/api/goods put');
+  //res.json({result: 200});
   models.Goods.create({
     title: req.body.title,
     price: req.body.price
   }).then(function(good) {
-    res.json(good);
+    //console.log(good);
+    res.json({id: good.id, title: good.title, price: good.price});
   });
 });
 
 // update single good
 router.put('/api/goods/:id', function(req, res) {
   console.log('/api/goods/'+req.params.id+' put');
-  res.json({result: 200});
-  //models.Goods.find({
-  //  where: {
-  //    id: req.params.id
-  //  }
-  //}).then(function(good) {
-  //  if(good){
-  //    good.updateAttributes({
-  //      title: req.body.title,
-  //      price: req.body.price
-  //    }).then(function(good) {
-  //      res.send(good);
-  //    });
-  //  }
-  //});
+  //res.json({result: 200});
+  models.Goods.find({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(good) {
+    if(good){
+      good.updateAttributes({
+        title: req.body.title,
+        price: req.body.price
+      }).then(function(good) {
+        //console.log(good);
+        res.send(good);
+      });
+    }
+  });
 });
 
 // delete a single good
-router.delete('/goods/:id', function(req, res) {
+router.delete('/api/goods/:id', function(req, res) {
   console.log('/api/goods/'+req.params.id+' delete');
-  res.json({result: 200});
-  //models.Goods.destroy({
-  //  where: {
-  //    id: req.params.id
-  //  }
-  //}).then(function(good) {
-  //  res.json(good);
-  //});
+//  res.json({result: 200});
+  models.Goods.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(good) {
+    //console.log(good);
+    res.json({result:200});
+  });
 });
 
 module.exports = router;
