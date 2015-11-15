@@ -5,6 +5,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
 
 // *** routes *** //
 var routes = require('./routes/index.js');
@@ -24,6 +25,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
+
+//// put passport config after this line
+//app.use(express.session());
+//
+//// passport initialization
+//app.use(passport.initialize());
+//app.use(passport.session());
 
 // *** main routes *** //
 app.use('/', routes);

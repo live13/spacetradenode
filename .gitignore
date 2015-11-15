@@ -6,4 +6,5 @@ coverage/
 .tmp/
 public/
 dist/
+/server/config.json
 npm-debug.log
