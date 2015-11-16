@@ -1,11 +1,17 @@
 {
   "development": {
-    "username": "live",
-    "password": "live13",
+    "username": "postgres",
+    "password": "postgres",
     "database": "spacetrade",
-    "host": "localhost",
+    "host": "192.168.88.116",
     "port": "5432",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "redis": {
+      "host": "192.168.88.116",
+      "port": "6379",
+      "username": "redis",
+      "password": "redis"
+    }
   },
   "test": {
     "username": "update me",
