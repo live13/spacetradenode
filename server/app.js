@@ -18,23 +18,24 @@ var models = require('./models');
 // will be set at `req.user` in route handlers after authentication.
 passport.use(new Strategy(
     function(username, password, done) {
+      console.log('\n**********Strategy*********');
       console.log(username);
       console.log(password);
-      console.log(done);
       models.User.findOne({
         where: {
           name: username
         },
-        attributes: ['name', 'pass']
+        attributes: ['id', 'name', 'pass']
       }).then(function(user) {
-        console.log(user);
         if(user == null)
           return done(null, false);
-        if(password == user.pass)
+        var foundUser = user.dataValues;
+        console.log(foundUser);
+        if(password != foundUser.pass)
           return done(null, false);
-        return done(null, user);
+        return done(null, foundUser);
       }).catch(function(user) {
-        console.log(user);
+        console.log('\n'+username+'not found **************');
         return done(new Error('error find user in db'));
       });
 /*      db.users.findByUsername(username, function(err, user) {
@@ -55,7 +56,8 @@ passport.use(new Strategy(
 // serializing, and querying the user record by ID from the database when
 // deserializing.
 passport.serializeUser(function(user, done) {
-  console.log('serializeUser');
+  console.log('\nserializeUser ***************');
+  console.log(user);
   done(null, user.id);
 });
 
@@ -83,6 +85,7 @@ passport.deserializeUser(function(id, done) {
 // *** routes *** //
 var routes = require('./routes/index.js');
 var crudroutes = require('./routes/crud.js');
+var registerroute = require('./routes/register.js');
 var loginroute = require('./routes/login.js');
 
 // *** express instance *** //
@@ -111,6 +114,7 @@ app.use(passport.session());
 // *** main routes *** //
 app.use('/', routes);
 app.use('/api/goods', crudroutes);
+app.use('/api/register', registerroute);
 app.use('/api/login', loginroute);
 
 
@@ -126,7 +130,6 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-
 // *** error handlers *** //
 
 // development error handler
@@ -134,10 +137,14 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    console.log('\ndevelopment error path');
+    console.log(err.status);
+    console.log(path.join(__dirname, '../public'));
+    res.sendFile(path.join(__dirname, '../public','index.html'));
+/*    res.render('error', {
       message: err.message,
       error: err
-    });
+    });*/
   });
 }
 
@@ -145,10 +152,13 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
+  console.log('\nprod error path');
+  console.log(path.join(__dirname, '../public'));
+  res.sendFile(path.join(__dirname, '../public','index.html'));
+/*  res.render('error', {
     message: err.message,
     error: {}
-  });
+  });*/
 });
 
 
