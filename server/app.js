@@ -6,10 +6,84 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
+var Strategy = require('passport-local').Strategy;
+
+var models = require('./models');
+
+// Configure the local strategy for use by Passport.
+//
+// The local strategy require a `verify` function which receives the credentials
+// (`username` and `password`) submitted by the user.  The function must verify
+// that the password is correct and then invoke `cb` with a user object, which
+// will be set at `req.user` in route handlers after authentication.
+passport.use(new Strategy(
+    function(username, password, done) {
+      console.log(username);
+      console.log(password);
+      console.log(done);
+      models.User.findOne({
+        where: {
+          name: username
+        },
+        attributes: ['name', 'pass']
+      }).then(function(user) {
+        console.log(user);
+        if(user == null)
+          return done(null, false);
+        if(password == user.pass)
+          return done(null, false);
+        return done(null, user);
+      }).catch(function(user) {
+        console.log(user);
+        return done(new Error('error find user in db'));
+      });
+/*      db.users.findByUsername(username, function(err, user) {
+        if (err) { return cb(err); }
+        if (!user) { return cb(null, false); }
+        if (user.password != password) { return cb(null, false); }
+        return cb(null, user);
+      });*/
+      //return cb(null, user);
+    }));
+
+
+// Configure Passport authenticated session persistence.
+//
+// In order to restore authentication state across HTTP requests, Passport needs
+// to serialize users into and deserialize users out of the session.  The
+// typical implementation of this is as simple as supplying the user ID when
+// serializing, and querying the user record by ID from the database when
+// deserializing.
+passport.serializeUser(function(user, done) {
+  console.log('serializeUser');
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  console.log('deserializeUser');
+  models.User.findOne({
+    where: {
+      id: id
+    },
+    attributes: ['name', 'pass']
+  }).then(function(user) {
+    console.log(user);
+    if(user == null)
+      return done(new Error('error user not exist'));
+    return done(null, user);
+  }).catch(function(user) {
+    return done(new Error('error find user in db'));
+  });
+/*  db.users.findById(id, function (err, user) {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });*/
+});
 
 // *** routes *** //
 var routes = require('./routes/index.js');
 var crudroutes = require('./routes/crud.js');
+var loginroute = require('./routes/login.js');
 
 // *** express instance *** //
 var app = express();
@@ -27,15 +101,18 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 
 //// put passport config after this line
-//app.use(express.session());
-//
-//// passport initialization
-//app.use(passport.initialize());
-//app.use(passport.session());
+app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+
+// Initialize Passport and restore authentication state, if any, from the
+// session.
+app.use(passport.initialize());
+app.use(passport.session());
 
 // *** main routes *** //
 app.use('/', routes);
-app.use('/', crudroutes);
+app.use('/api/goods', crudroutes);
+app.use('/api/login', loginroute);
+
 
 app.all('/*', function(req, res, next) {
   // Just send the index.html for other files to support HTML5Mode

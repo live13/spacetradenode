@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "live",
-    "password": "live13",
+    "username": "postgres",
+    "password": "postgres",
     "database": "spacetrade",
-    "host": "192.168.1.101",
+    "host": "192.168.88.116",
     "port": "5432",
     "dialect": "postgres"
   },

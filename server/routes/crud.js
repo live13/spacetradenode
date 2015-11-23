@@ -3,7 +3,7 @@ var router = express.Router();
 var models = require('../models');
 
 // get all goods
-router.get('/api/goods', function(req, res) {
+router.get('/', function(req, res) {
   console.log('/api/goods');
   //res.json({result: 200});
   models.Goods.findAll({
@@ -15,7 +15,7 @@ router.get('/api/goods', function(req, res) {
 });
 
 // get single good
-router.get('/api/goods/:id', function(req, res) {
+router.get('/:id', function(req, res) {
   console.log('/api/goods/'+req.params.id);
   //res.json({result: 200});
   models.Goods.findOne({
@@ -30,7 +30,7 @@ router.get('/api/goods/:id', function(req, res) {
 });
 
 // add new good
-router.post('/api/goods', function(req, res) {
+router.post('/', function(req, res) {
   //console.log('/api/goods put');
   //res.json({result: 200});
   models.Goods.create({
@@ -43,7 +43,7 @@ router.post('/api/goods', function(req, res) {
 });
 
 // update single good
-router.put('/api/goods/:id', function(req, res) {
+router.put('/:id', function(req, res) {
   console.log('/api/goods/'+req.params.id+' put');
   //res.json({result: 200});
   models.Goods.find({
@@ -64,7 +64,7 @@ router.put('/api/goods/:id', function(req, res) {
 });
 
 // delete a single good
-router.delete('/api/goods/:id', function(req, res) {
+router.delete('/:id', function(req, res) {
   console.log('/api/goods/'+req.params.id+' delete');
 //  res.json({result: 200});
   models.Goods.destroy({

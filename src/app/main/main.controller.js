@@ -3,11 +3,11 @@
 
   angular
     .module('spacetradenode')
-    .controller('MainController', MainController);
+    .controller('MainController', mainController);
 
   /** @ngInject */
-  function MainController() {
-    var vm = this;
+  function mainController() {
+    //var vm = this;
 
   }
 })();

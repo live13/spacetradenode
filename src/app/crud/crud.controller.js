@@ -3,10 +3,10 @@
 
   angular
     .module('spacetradenode')
-    .controller('CrudController', CrudController);
+    .controller('CrudController', crudController);
 
   /** @ngInject */
-  function CrudController($log,crudServ) {
+  function crudController($log,crudServ) {
     var vm = this;
     vm.create = createGood;
     vm.update = updateGood;
