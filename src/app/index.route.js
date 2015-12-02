@@ -6,7 +6,7 @@
     .config(routerConfig);
 
   /** @ngInject */
-  function routerConfig($stateProvider, $urlRouterProvider /*,$locationProvider*/) {
+  function routerConfig($stateProvider, $urlRouterProvider, spaceConfig /*,$locationProvider*/) {
     $stateProvider
       .state('home', {
         url: '/',
@@ -30,7 +30,13 @@
         url: '/crud',
         templateUrl: 'app/crud/crud.html',
         controller: 'CrudController',
-        controllerAs: 'crud'
+        controllerAs: 'crud',
+        data: {
+          permissions: {
+            only: [spaceConfig.ROLE_PLAYER],
+            redirectTo: 'login'
+          }
+        }
       });
 
     // Enable html5mode

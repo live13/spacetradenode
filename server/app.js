@@ -28,23 +28,17 @@ passport.use(new Strategy(
         attributes: ['id', 'name', 'pass']
       }).then(function(user) {
         if(user == null)
-          return done(null, false);
+          return done(null, false, { message: 'Incorrect username.' });
+
         var foundUser = user.dataValues;
         console.log(foundUser);
         if(password != foundUser.pass)
-          return done(null, false);
+          return done(null, false, { message: 'Incorrect password.' });
+
         return done(null, foundUser);
       }).catch(function(user) {
-        console.log('\n'+username+'not found **************');
         return done(new Error('error find user in db'));
       });
-/*      db.users.findByUsername(username, function(err, user) {
-        if (err) { return cb(err); }
-        if (!user) { return cb(null, false); }
-        if (user.password != password) { return cb(null, false); }
-        return cb(null, user);
-      });*/
-      //return cb(null, user);
     }));
 
 
@@ -69,9 +63,10 @@ passport.deserializeUser(function(id, done) {
     },
     attributes: ['name', 'pass']
   }).then(function(user) {
-    console.log(user);
+    console.log(user.dataValues);
     if(user == null)
       return done(new Error('error user not exist'));
+
     return done(null, user);
   }).catch(function(user) {
     return done(new Error('error find user in db'));

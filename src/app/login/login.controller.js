@@ -6,7 +6,7 @@
 			.controller('LoginController', loginController);
 
 	/** @ngInject */
-	function loginController($log,loginServ) {
+	function loginController($log, $state, loginServ) {
 		var vm = this;
 		vm.login = login;
 
@@ -17,6 +17,7 @@
 			loginServ.login({'username': vm.name,'password': vm.pass})
 			.then(function(result){
 				$log.debug(result);
+				$state.go('home');
 			})
 			.catch(function(result){
 				$log.debug(result);

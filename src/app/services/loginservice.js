@@ -4,10 +4,12 @@
 	angular
 			.module('spacetradenode')
 			.factory('loginServ', loginServ);
-			function loginServ($http, $httpParamSerializer) {
+			function loginServ($log, $http, $httpParamSerializer,$cookies) {
 
 				return {
-					login: login
+					login: login,
+					logout: logout,
+					logedIn: logedIn
 				};
 
 				function login(client) {
@@ -21,5 +23,22 @@
 					});
 				}
 
+				function logout() {
+					return $http({
+						method: 'GET',
+						url: '/api/login/logout',
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded'
+						}
+					});
+				}
+
+				function logedIn() {
+					var user = $cookies.get('user');
+					$log.debug(user);
+					if(user)
+						return true;
+					return false;
+				}
 			}
 })();

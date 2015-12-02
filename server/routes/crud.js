@@ -5,6 +5,8 @@ var models = require('../models');
 // get all goods
 router.get('/', function(req, res) {
   console.log('/api/goods');
+  console.log('isAuthenticated'+req.isAuthenticated());
+  console.log(req.user);
   //res.json({result: 200});
   models.Goods.findAll({
     attributes: ['id', 'title', 'price']
