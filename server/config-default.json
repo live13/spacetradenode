@@ -5,7 +5,9 @@
     "database": "update_me",
     "host": "update me",
     "port": "5432",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "FB_APP_ID": "493628087460517",
+    "FB_APP_SEACRET": "abba50690fb21f55029c20f0b9b54496"
 /*    "username": "live",
     "password": "live13",
     "database": "spacetrade",
@@ -18,13 +20,17 @@
     "password": "update me",
     "database": "update_me",
     "host": "update me",
-    "dialect": "update me"
+    "dialect": "update me",
+    "FB_APP_ID": "493628087460517",
+    "FB_APP_SEACRET": "abba50690fb21f55029c20f0b9b54496"
   },
   "production": {
     "username": "update me",
     "password": "update me",
     "database": "update me",
     "host": "update me",
-    "dialect": "update me"
+    "dialect": "update me",
+    "FB_APP_ID": "493628087460517",
+    "FB_APP_SEACRET": "abba50690fb21f55029c20f0b9b54496"
   }
 }

@@ -6,6 +6,9 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true,
       primaryKey: true
     },
+    fb_id: {
+      type: DataTypes.STRING
+    },
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     pass: DataTypes.STRING

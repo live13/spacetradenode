@@ -5,20 +5,28 @@
     "database": "spacetrade",
     "host": "192.168.88.116",
     "port": "5432",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "FB_APP_ID": "493628087460517",
+    "FB_APP_SEACRET": "abba50690fb21f55029c20f0b9b54496",
+    "FB_CALLBACK_URL":"http://localhost:3005/#/facebook/callback"
   },
   "test": {
     "username": "update me",
     "password": "update me",
     "database": "update_me",
     "host": "update me",
-    "dialect": "update me"
+    "dialect": "update me",
+    "FB_APP_ID": "493628087460517",
+    "FB_APP_SEACRET": "abba50690fb21f55029c20f0b9b54496",
+    "FB_CALLBACK_URL":"http://localhost:3005/#/facebook/callback"
   },
   "production": {
     "username": "update me",
     "password": "update me",
     "database": "update me",
     "host": "update me",
-    "dialect": "update me"
+    "dialect": "update me",
+    "FB_APP_ID": "493628087460517",
+    "FB_APP_SEACRET": "abba50690fb21f55029c20f0b9b54496"
   }
 }

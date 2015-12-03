@@ -45,3 +45,8 @@ http://excellencenodejsblog.com/express-passportjs/
 
 simple frontend session
 http://speakingaword.blogspot.com/2013/08/authentication-in-angularjs-nodejs-and.html
+https://github.com/tutsplus/passport-social/blob/master/routes/index.js
+
+node schedule
+http://browsenpm.org/package/node-schedule
+https://github.com/node-schedule/node-schedule/wiki/Date-based-Scheduling
