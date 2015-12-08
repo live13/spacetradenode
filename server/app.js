@@ -7,11 +7,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
-var FacebookStrategy = require('passport-facebook').Strategy;
 
 var models = require('./models');
 
-// Configure the local strategy for use by Passport.
+/*// Configure the local strategy for use by Passport.
 //
 // The local strategy require a `verify` function which receives the credentials
 // (`username` and `password`) submitted by the user.  The function must verify
@@ -72,11 +71,8 @@ passport.deserializeUser(function(id, done) {
   }).catch(function(user) {
     return done(new Error('error find user in db'));
   });
-/*  db.users.findById(id, function (err, user) {
-    if (err) { return cb(err); }
-    cb(null, user);
-  });*/
-});
+
+});*/
 
 // *** routes *** //
 var routes = require('./routes/index.js');
@@ -106,6 +102,10 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: false, save
 // session.
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Initialize Passport
+var initPassport = require('./passport/init');
+initPassport(passport);
 
 // *** main routes *** //
 app.use('/', routes);

@@ -5,24 +5,11 @@ var passport = require('passport');
 
 router.post('/',
 		passport.authenticate('local'),
-		function(req, res, next) {
-/*	req.session.save(function (err) {
-		if (err) {
-			return next(err);
-		}
-		res.json(
-				{ user: user,
-					success: true
-				});
-	});*/
-	console.log('\npassport.authenticate **********************');
-	console.log(req.user);
-	res.cookie('user', JSON.stringify({'id': req.user.id}), { httpOnly: false } );
-	res.status(200).end();
-/*	res.json(
-			{ user: { id: req.user.id, name: req.user.name },
-				success: true
-			});*/
+			function(req, res, next) {
+				console.log('\nlocal passport.authenticate **********************');
+				console.log(req.user);
+				res.cookie('user', JSON.stringify({'id': req.user.id}), { httpOnly: false } );
+				res.status(200).end();
 });
 
 router.get('/logout', function(req, res) {
@@ -31,9 +18,21 @@ router.get('/logout', function(req, res) {
 	res.status(200).end();
 });
 
-/*router.get('/', function(req, res) {
-	console.log('/api/login get');
-	res.redirect('/api/login');
-});*/
+// route for facebook authentication and login
+// different scopes while logging in
+router.get('/facebook',
+		passport.authenticate('facebook', { scope : 'email' }
+		));
+
+// handle the callback after facebook has authenticated the user
+router.get('/facebook/callback',
+		passport.authenticate('facebook',
+				function(req, res, next) {
+					console.log('\nfacebook passport.authenticate **********************');
+					console.log(req.user);
+					res.cookie('user', JSON.stringify({'id': req.user.id}), { httpOnly: false } );
+					res.status(200).end();
+		})
+);
 
 module.exports = router;

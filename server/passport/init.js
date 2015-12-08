@@ -8,9 +8,9 @@ module.exports = function(passport){
 
 	// Passport needs to be able to serialize and deserialize users to support persistent login sessions
 	passport.serializeUser(function(user, done) {
-		console.log('serializing user: ');
+		console.log('\n***************serializing user:*************************');
 		console.log(user);
-		done(null, user._id);
+		done(null, user.id);
 	});
 
 	passport.deserializeUser(function(id, done) {
@@ -23,8 +23,8 @@ module.exports = function(passport){
 			console.log(user.dataValues);
 			if(user == null)
 				return done(new Error('error user not exist'));
-			console.log('deserializing user:');
-			console.log(user);
+			console.log('\n***************deserializing user:*************************');
+			//console.log(user);
 			return done(null, user);
 		}).catch(function(user) {
 			return done(new Error('error find user in db'));

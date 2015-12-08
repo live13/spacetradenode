@@ -10,7 +10,7 @@ module.exports = function(passport) {
 	passport.use('local', new LocalStrategy(
 
 			function(username, password, done) {
-				console.log('\n**********Strategy*********');
+				console.log('\n**********Local strategy*********');
 				console.log(username);
 				console.log(password);
 				models.User.findOne({
@@ -26,11 +26,11 @@ module.exports = function(passport) {
 					console.log(foundUser);
 					if(password != foundUser.pass)
 						return done(null, false, { message: 'Incorrect password.' });
-
+					console.log('local done');
 					return done(null, foundUser);
 				}).catch(function(user) {
 					return done(new Error('error find user in db'));
 				});
 			}
-
+	)
 	)};
