@@ -26,13 +26,13 @@ router.get('/facebook',
 
 // handle the callback after facebook has authenticated the user
 router.get('/facebook/callback',
-		passport.authenticate('facebook',
-				function(req, res, next) {
-					console.log('\nfacebook passport.authenticate **********************');
-					console.log(req.user);
-					res.cookie('user', JSON.stringify({'id': req.user.id}), { httpOnly: false } );
-					res.status(200).end();
-		})
+		passport.authenticate('facebook', {	failureRedirect : '/api/login'}),
+		function(req, res, next) {
+			console.log('\nfacebook passport.authenticate **********************');
+			console.log(req.user);
+			res.cookie('user', JSON.stringify({'id': req.user.id}), { httpOnly: false } );
+			res.status(200).end();
+		}
 );
 
 module.exports = router;

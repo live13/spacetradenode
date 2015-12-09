@@ -6,8 +6,9 @@
     "host": "update me",
     "port": "5432",
     "dialect": "postgres",
-    "FB_APP_ID": "493628087460517",
-    "FB_APP_SEACRET": "abba50690fb21f55029c20f0b9b54496"
+    "FB_APP_ID": "210055562660385",
+    "FB_APP_SEACRET": "78cd7da1dba088b429a116b3c5f99c3f",
+    "FB_CALLBACK_URL":"http://localhost:3005/#/api/login/facebook/callback"
 /*    "username": "live",
     "password": "live13",
     "database": "spacetrade",
@@ -21,8 +22,9 @@
     "database": "update_me",
     "host": "update me",
     "dialect": "update me",
-    "FB_APP_ID": "493628087460517",
-    "FB_APP_SEACRET": "abba50690fb21f55029c20f0b9b54496"
+    "FB_APP_ID": "210055562660385",
+    "FB_APP_SEACRET": "78cd7da1dba088b429a116b3c5f99c3f",
+    "FB_CALLBACK_URL":"http://localhost:3005/#/api/login/facebook/callback"
   },
   "production": {
     "username": "update me",
@@ -30,7 +32,8 @@
     "database": "update me",
     "host": "update me",
     "dialect": "update me",
-    "FB_APP_ID": "493628087460517",
-    "FB_APP_SEACRET": "abba50690fb21f55029c20f0b9b54496"
+    "FB_APP_ID": "210055562660385",
+    "FB_APP_SEACRET": "78cd7da1dba088b429a116b3c5f99c3f",
+    "FB_CALLBACK_URL":"http://localhost:3005/#/api/login/facebook/callback"
   }
 }
