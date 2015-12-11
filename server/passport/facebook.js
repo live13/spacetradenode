@@ -16,8 +16,8 @@ module.exports = function(passport) {
 			// facebook will send back the tokens and profile
 			function(access_token, refresh_token, profile, done) {
 
-				console.log('profile', profile);
-
+				console.log('\nprofile **********');
+				console.log(profile);
 				// asynchronous
 				process.nextTick(function () {
 

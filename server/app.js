@@ -134,7 +134,10 @@ if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     console.log('\ndevelopment error path');
-    console.log(err.status);
+    console.log(req.baseUrl);
+    console.log(req.route.path);
+    console.log(req.body);
+    console.log(req.params);
     console.log(path.join(__dirname, '../public'));
     res.sendFile(path.join(__dirname, '../public','index.html'));
 /*    res.render('error', {

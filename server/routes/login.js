@@ -21,18 +21,19 @@ router.get('/logout', function(req, res) {
 // route for facebook authentication and login
 // different scopes while logging in
 router.get('/facebook',
-		passport.authenticate('facebook', { scope : 'email' }
-		));
+		passport.authenticate('facebook', { scope : ['public_profile', 'user_friends', 'email'] })
+);
 
 // handle the callback after facebook has authenticated the user
 router.get('/facebook/callback',
-		passport.authenticate('facebook', {	failureRedirect : '/api/login'}),
+		passport.authenticate('facebook', {successRedirect: "/#/crud",	failureRedirect : '/#/register'})/*,
 		function(req, res, next) {
 			console.log('\nfacebook passport.authenticate **********************');
-			console.log(req.user);
-			res.cookie('user', JSON.stringify({'id': req.user.id}), { httpOnly: false } );
-			res.status(200).end();
-		}
+			//console.log(req.user);
+			//res.cookie('user', JSON.stringify({'id': req.user.id}), { httpOnly: false } );
+			//res.status(200).end();
+			res.redirect('/#/crud');
+		}*/
 );
 
 module.exports = router;
