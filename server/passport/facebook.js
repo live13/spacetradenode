@@ -28,21 +28,13 @@ module.exports = function(passport) {
 						}
 						, attributes: ['name', 'pass']
 					}).then(function (user) {
-						console.log(user.dataValues);
-						if (user == null) {
-							// if there is no user found with that facebook id, create them
-							models.User.create({
-										name: req.body.name,
-										email: req.body.email,
-										pass: req.body.pass
-									})
-									.then(function (newuser) {
-										console.log(newuser);
-										res.json({name: newuser.name, email: newuser.email});
-									});
-						}
+						if(user == null)
+							return done(null, false, { message: 'Incorrect username.' });
 
-						return done(null, user);
+						var foundUser = user.dataValues;
+						console.log('\n facebook found user:');
+						console.log(foundUser);
+						return done(null, foundUser);
 
 					}).catch(function (user) {
 						return done(new Error('error find user in db'));
