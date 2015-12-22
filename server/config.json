@@ -6,8 +6,8 @@
     "host": "192.168.88.116",
     "port": "5432",
     "dialect": "postgres",
-    "FB_APP_ID": "210055562660385",
-    "FB_APP_SEACRET": "78cd7da1dba088b429a116b3c5f99c3f",
+    "FB_APP_ID": "210053915993883",
+    "FB_APP_SEACRET": "4cbc4b93f121c784e9c4fa5a377b1b03",
     "FB_CALLBACK_URL":"http://localhost:3005/api/login/facebook/callback"
   },
   "test": {
@@ -16,8 +16,8 @@
     "database": "update_me",
     "host": "update me",
     "dialect": "update me",
-    "FB_APP_ID": "210055562660385",
-    "FB_APP_SEACRET": "78cd7da1dba088b429a116b3c5f99c3f",
+    "FB_APP_ID": "210053915993883",
+    "FB_APP_SEACRET": "4cbc4b93f121c784e9c4fa5a377b1b03",
     "FB_CALLBACK_URL":"http://localhost:3005/api/login/facebook/callback"
   },
   "production": {
@@ -26,8 +26,8 @@
     "database": "update me",
     "host": "update me",
     "dialect": "update me",
-    "FB_APP_ID": "210055562660385",
-    "FB_APP_SEACRET": "78cd7da1dba088b429a116b3c5f99c3f",
+    "FB_APP_ID": "210053915993883",
+    "FB_APP_SEACRET": "4cbc4b93f121c784e9c4fa5a377b1b03",
     "FB_CALLBACK_URL":"http://localhost:3005/api/login/facebook/callback"
   }
 }

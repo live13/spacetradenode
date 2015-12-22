@@ -2,7 +2,7 @@
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
     id: {
-      type: DataTypes.INTEGER(11).UNSIGNED,
+      type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
@@ -12,9 +12,12 @@ module.exports = function(sequelize, DataTypes) {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     pass: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function (models) {
+    }
+    , {
+      freezeTableName: true,
+        classMethods: {
+        associate: function (models) {
+          User.hasMany(models.Ships);
       }
     }
   });

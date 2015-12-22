@@ -1,13 +1,14 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Goods = sequelize.define('Goods', {
+  var Planets = sequelize.define('Planets', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
     title: DataTypes.STRING,
-    price: DataTypes.INTEGER
+    x: DataTypes.INTEGER,
+    y: DataTypes.INTEGER
   });
-  return Goods;
+  return Planets;
 };
