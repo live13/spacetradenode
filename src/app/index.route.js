@@ -6,7 +6,8 @@
     .config(routerConfig);
 
   /** @ngInject */
-  function routerConfig($stateProvider, $urlRouterProvider, spaceConfig /*,$locationProvider*/) {
+  function routerConfig($stateProvider, $locationProvider, $urlRouterProvider, spaceConfig) {
+
     $stateProvider
       .state('home', {
         url: '/',
@@ -40,7 +41,7 @@
       });
 
     // Enable html5mode
-    //$locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true);
 
     $urlRouterProvider.otherwise('/');
   }

@@ -36,7 +36,7 @@ router.get('/facebook/callback',
 			console.log(req.user);
 			//res.cookie('user', JSON.stringify({'id': req.user.id}), { httpOnly: false } );
 			//res.status(200).end();
-			res.redirect('/#/crud');
+			res.redirect('/crud');
 		}
 );
 
