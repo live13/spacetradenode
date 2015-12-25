@@ -1,4 +1,5 @@
 'use strict';
+//goods type
 module.exports = function(sequelize, DataTypes) {
   var Goods = sequelize.define('Goods', {
     id: {
@@ -7,7 +8,8 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true
     },
     title: DataTypes.STRING,
-    price: DataTypes.INTEGER
+    price: DataTypes.INTEGER,
+    capacity: DataTypes.INTEGER //capacity need to store single good entity
   });
   return Goods;
 };

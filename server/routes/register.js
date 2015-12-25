@@ -4,7 +4,7 @@ var models = require('../models');
 
 router.post('/', function(req, res) {
 		console.log(req.body);
-		models.User.create({
+		models.Users.create({
 					name: req.body.name,
 					email: req.body.email,
 					pass: req.body.pass

@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Item = sequelize.define('Item', {
+  var Items = sequelize.define('Items', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -9,5 +9,5 @@ module.exports = function(sequelize, DataTypes) {
     count: DataTypes.INTEGER,
     name: DataTypes.STRING
   });
-  return Item;
+  return Items;
 };

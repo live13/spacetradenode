@@ -21,7 +21,7 @@ passport.use(new Strategy(
       console.log('\n**********Strategy*********');
       console.log(username);
       console.log(password);
-      models.User.findOne({
+      models.Users.findOne({
         where: {
           name: username
         },
@@ -57,7 +57,7 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(id, done) {
   console.log('deserializeUser');
-  models.User.findOne({
+  models.Users.findOne({
     where: {
       id: id
     },

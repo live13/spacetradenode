@@ -13,7 +13,7 @@ module.exports = function(passport) {
 				console.log('\n**********Local strategy*********');
 				console.log(username);
 				console.log(password);
-				models.User.findOne({
+				models.Users.findOne({
 					where: {
 						name: username
 					},

@@ -22,7 +22,7 @@ module.exports = function(passport) {
 				process.nextTick(function () {
 
 					// find the user in the database based on their facebook id
-					models.User.findOne({
+					models.Users.findOne({
 						where: {
 							fb_id: profile.id
 						}
