@@ -8,6 +8,7 @@ var isAuthenticated = function (req, res, next) {
   // request and response objects
   if (req.isAuthenticated())
     return next();
+  console.log('not authenticated user');
   // if the user is not authenticated then redirect him to the login page
   return res.status(401).end();
 }

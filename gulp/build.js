@@ -2,10 +2,19 @@
 
 var path = require('path');
 var gulp = require('gulp');
+var sass = require('gulp-sass');
 var conf = require('./conf');
 
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
+});
+
+gulp.task('sass-styles', function() {
+  gulp.src(
+      path.join(conf.paths.src, 'sass/**/*.scss'))
+      .pipe(sass({outputStyle: 'compressed'}))
+      .pipe(sass().on('error', sass.logError))
+      .pipe(gulp.dest(path.join(conf.paths.dist, 'css/')));
 });
 
 gulp.task('partials', function () {

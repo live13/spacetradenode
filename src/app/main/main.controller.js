@@ -6,20 +6,17 @@
     .controller('MainController', mainController);
 
   /** @ngInject */
-  function mainController($log, $state, loginServ) {
+  function mainController($log, shangeStateServ) {
     var vm = this;
-    vm.logout = logout;
+    vm.tologin = tologin;
+    vm.toreg = toreg;
 
-    function logout(){
-      $log.debug('login');
-      loginServ.logout()
-          .then(function(result){
-            $log.debug(result);
-            $state.go('login');
-          })
-          .catch(function(result){
-            $log.debug(result);
-          });
+    function tologin(){
+      shangeStateServ.tologin();
+    }
+
+    function toreg(){
+      shangeStateServ.toreg();
     }
   }
 })();

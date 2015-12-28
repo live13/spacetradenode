@@ -6,7 +6,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
-var Strategy = require('passport-local').Strategy;
 
 var models = require('./models');
 
@@ -27,9 +26,9 @@ var app = express();
 // *** config middleware *** //
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../public')));
 
 //// put passport config after this line
 app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
@@ -39,24 +38,49 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: false, save
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Initialize Passport
-var initPassport = require('./passport/init');
+// Initialize Passport strategies
+var initPassport = require('./passports/init');
 initPassport(passport);
 
+//static resources
+app.use(express.static(path.join(__dirname, '../public')));
 // *** main routes *** //
 app.use('/', routes);
 app.use('/api/goods', crudroutes);
 app.use('/api/register', registerroute);
 app.use('/api/login', loginroute);
 
+app.use(function (req, res, next) {
+  var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  console.log('Client IP:', ip);
+  next();
+});
 
-app.all('/*', function(req, res, next) {
-  // Just send the index.html for other files to support HTML5Mode
-  res.sendFile('index.html', path.join(__dirname, '../public'));
+app.use(function (req, res, next) {
+  console.log('Request Type:', req.method);
+  next();
+});
+
+//angular routes
+app.get('*', function(req, res, next) {
+  console.log('frontend call');
+  var options = {root: path.join(__dirname,'../public')};
+  var fileName = 'index.html';
+  res.sendFile(fileName, options, function (err) {
+    if (err) {
+      console.log(err);
+      res.status(err.status).end();
+    }
+    else {
+      console.log('Sent:', fileName);
+    }
+  });
+
 });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  console.log('404');
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
@@ -68,18 +92,13 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
+    console.log(err);
     res.status(err.status || 500);
     console.log('\ndevelopment error path');
-    console.log(req.baseUrl);
-    console.log(req.route.path);
-    console.log(req.body);
-    console.log(req.params);
-    console.log(path.join(__dirname, '../public'));
-    res.sendFile(path.join(__dirname, '../public','index.html'));
-/*    res.render('error', {
+    res.render('error', {
       message: err.message,
       error: err
-    });*/
+    });
   });
 }
 
@@ -88,12 +107,10 @@ if (app.get('env') === 'development') {
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   console.log('\nprod error path');
-  console.log(path.join(__dirname, '../public'));
-  res.sendFile(path.join(__dirname, '../public','index.html'));
-/*  res.render('error', {
+  res.render('error', {
     message: err.message,
-    error: {}
-  });*/
+    error: err
+  });
 });
 
 
