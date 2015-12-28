@@ -17,7 +17,7 @@
 			loginServ.login({'username': vm.name,'password': vm.pass})
 			.then(function(result){
 				$log.debug(result);
-				$state.go('home');
+				$state.go('status');
 			})
 			.catch(function(result){
 				$log.debug(result);

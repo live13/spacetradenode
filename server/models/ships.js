@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
       owner_id: { type: DataTypes.INTEGER,
                   allowNull: false
       },
-      ship_body_id: DataTypes.INTEGER, //body type
+      ship_hull_type_id: DataTypes.INTEGER, //hull type
       cargo_hold_id: DataTypes.INTEGER //cargo hold of the ship ()
     }
     , {

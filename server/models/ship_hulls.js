@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var ShipBodies = sequelize.define('ShipBodies', {
+  var ShipHulls = sequelize.define('ShipHulls', {
         id: {
           type: DataTypes.INTEGER,
           autoIncrement: true,
@@ -14,5 +14,5 @@ module.exports = function(sequelize, DataTypes) {
         classMethods: {
         }
       });
-  return ShipBodies;
+  return ShipHulls;
 };

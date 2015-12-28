@@ -38,6 +38,30 @@
             redirectTo: 'login'
           }
         }
+      })
+      .state('status', {
+        url: '/status',
+        templateUrl: 'app/gamescreens/status/status.html',
+        controller: 'StatusController',
+        controllerAs: 'st',
+        data: {
+          permissions: {
+            only: [spaceConfig.ROLE_PLAYER],
+            redirectTo: 'login'
+          }
+        }
+      })
+      .state('map', {
+        url: '/map',
+        templateUrl: 'app/gamescreens/map/map.html',
+        controller: 'MapController',
+        controllerAs: 'mp',
+        data: {
+          permissions: {
+            only: [spaceConfig.ROLE_PLAYER],
+            redirectTo: 'login'
+          }
+        }
       });
 
     // Enable html5mode

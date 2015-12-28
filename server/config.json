@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "postgres",
+    "username": "live",
+    "password": "live13",
     "database": "spacetrade",
-    "host": "192.168.88.116",
+    "host": "192.168.1.101",
     "port": "5432",
     "dialect": "postgres",
     "FB_APP_ID": "210053915993883",
