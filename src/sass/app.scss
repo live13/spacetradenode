@@ -12,4 +12,16 @@ body {
   font: 100% $font-stack;
   background-color: $dark-color;
   color: $midlight-color;
+
+  ul {
+    list-style-type: none;
+  }
+}
+
+.header-items-list {
+  display: inline;
+}
+
+.header-active {
+  color: $light-color;
 }

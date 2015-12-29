@@ -3,7 +3,7 @@
 
   angular
       .module('spacetradenode')
-      .controller('footerCtrl', footerController);
+      .controller('FooterController', footerController);
 
   /** @ngInject */
   function footerController($log) {

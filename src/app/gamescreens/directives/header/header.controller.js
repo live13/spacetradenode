@@ -3,7 +3,7 @@
 
   angular
       .module('spacetradenode')
-      .controller('headerCtrl', headerController);
+      .controller('HeaderController', headerController);
 
   /** @ngInject */
   function headerController($log) {

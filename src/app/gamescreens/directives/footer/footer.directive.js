@@ -13,9 +13,9 @@
       scope: {
         activeElement: '=?'
       },
-      controller: 'footerCtrl',
+      controller: 'FooterController',
       controllerAs: 'fc',
-      link: function (scope, el, attr, ngModel) {
+      link: function () {
 
       }
     };

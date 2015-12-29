@@ -13,9 +13,9 @@
       scope: {
         activeElement: '=?'
       },
-      controller: 'headerCtrl',
+      controller: 'HeaderController',
       controllerAs: 'hc',
-      link: function (scope, el, attr, ngModel) {
+      link: function () {
 
       }
     };
