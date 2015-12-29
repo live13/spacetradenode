@@ -9,9 +9,9 @@ var $ = require('gulp-load-plugins')();
 var wiredep = require('wiredep').stream;
 var _ = require('lodash');
 
-gulp.task('inject', ['scripts'], function () {
+gulp.task('inject', ['sass-styles','scripts'], function () {
   var injectStyles = gulp.src([
-    path.join(conf.paths.src, '/app/**/*.css')
+    path.join(conf.paths.src, '/**/*.css')
   ], { read: false });
 
   var injectScripts = gulp.src([

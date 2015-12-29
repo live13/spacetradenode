@@ -4,6 +4,7 @@ coverage/
 .sass-cache/
 .idea/
 .tmp/
+src/css/app.css
 public/
 dist/
 /server/config.json

@@ -1,0 +1,15 @@
+@import "bootstrap";
+
+$light-color: #F2A007;
+$midlight-color: #DF6204;
+$mid-color: #354D29;
+$shadow-color: #0E262A;
+$dark-color: #0F1A1C;
+
+$font-stack:    Helvetica, sans-serif;
+
+body {
+  font: 100% $font-stack;
+  background-color: $dark-color;
+  color: $midlight-color;
+}

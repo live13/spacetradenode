@@ -10,11 +10,14 @@ var $ = require('gulp-load-plugins')({
 });
 
 gulp.task('sass-styles', function() {
-  gulp.src(
+  console.log(conf.paths.bower + '/bootstrap-sass/assets/stylesheets');
+  return gulp.src(
       path.join(conf.paths.src, 'sass/**/*.scss'))
-      .pipe(sass({outputStyle: 'compressed'}))
+      .pipe(sass({outputStyle: 'compressed',
+        includePaths: [conf.paths.bower + '/bootstrap-sass/assets/stylesheets']
+      }))
       .pipe(sass().on('error', sass.logError))
-      .pipe(gulp.dest(path.join(conf.paths.dist, 'css/')));
+      .pipe(gulp.dest(path.join(conf.paths.src, 'css/')));
 });
 
 gulp.task('partials', function () {
