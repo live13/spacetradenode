@@ -1,7 +1,5 @@
-<div class="row">
-    <ul class="header-items-list">
-        <li ui-sref-active="header-active" class="col-lg-4 col-md-4 col-sm-4 col-xs-6"><a ui-sref="status">Status</a></li>
-        <li ui-sref-active="header-active" class="col-lg-4 col-md-4 col-sm-4 col-xs-6"><a ui-sref="map">Map</a></li>
-        <li class="col-lg-4 col-md-4 col-sm-4 col-xs-6"><input type="button" value="Logout"></li>
-    </ul>
+<div class="row header">
+        <div ui-sref-active="header-active" class="col-xs-4"><a ui-sref="status">Status</a></div>
+        <div ui-sref-active="header-active" class="col-xs-4"><a ui-sref="map">Map</a></div>
+        <div class="col-xs-4"><a href ng-click="hc.logout()">Logout</a></div>
 </div>

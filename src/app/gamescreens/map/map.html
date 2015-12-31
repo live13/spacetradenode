@@ -1,5 +1,18 @@
 <div>
   <header-dir></header-dir>
-  Map
+  <h2>Map</h2>
+  <svg width="400" height="400">
+    <circle id="planet1" cx="60" cy="60" r="10" style="fill: red"/>
+    <text id="thepopup" x="60" y="60" font-size="30" fill="black" visibility="hidden">Planet 1
+      <set attributeName="visibility" from="hidden" to="visible" begin="planet1.mouseover" end="planet1.mouseout"/>
+    </text>
+    <circle cx="100" cy="150" r="20" style="fill: blue"/>
+    <circle cx="200" cy="110" r="20" style="fill: blue"/>
+    <circle cx="350" cy="210" r="15" style="fill: blue"/>
+    <circle cx="80" cy="310" r="15" style="fill: blue"/>
+    <circle cx="130" cy="330" r="15" style="fill: blue"/>
+    <circle cx="190" cy="290" r="20" style="fill: yellow"/>
+    <circle cx="230" cy="320" r="20" style="fill: yellow"/>
+  </svg>
   <footer-dir></footer-dir>
 </div>

@@ -8,14 +8,35 @@ $dark-color: #0F1A1C;
 
 $font-stack:    Helvetica, sans-serif;
 
+$menu-text: 2rem;
+
 body {
   font: 100% $font-stack;
+  font-size: 16px;
   background-color: $dark-color;
   color: $midlight-color;
 
   ul {
     list-style-type: none;
   }
+
+  a {
+    text-decoration: none;
+    color: $midlight-color;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: $light-color;
+  }
+}
+
+.header {
+  font-size: $menu-text;
+  color: $midlight-color;
+  border-style: solid;
+  border-width: 1px;
+  border-color: $midlight-color;
 }
 
 .header-items-list {
@@ -23,5 +44,13 @@ body {
 }
 
 .header-active {
-  color: $light-color;
+  background-color: $mid-color;
+}
+
+.footer {
+  font-size: $menu-text;
+  color: $midlight-color;
+  border-style: solid;
+  border-width: 1px;
+  border-color: $midlight-color;
 }
